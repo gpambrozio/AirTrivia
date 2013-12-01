@@ -9,6 +9,12 @@
 #import "ATViewController.h"
 #import "ATMyScene.h"
 
+@interface ATViewController ()
+
+@property (nonatomic, strong) ATMyScene *scene;
+
+@end
+
 @implementation ATViewController
 
 - (void)viewDidLoad
@@ -19,13 +25,21 @@
     SKView * skView = (SKView *)self.view;
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
-    
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+
+    // Configure the view.
+    SKView * skView = (SKView *)self.view;
+
     // Create and configure the scene.
-    SKScene * scene = [ATMyScene sceneWithSize:skView.bounds.size];
-    scene.scaleMode = SKSceneScaleModeAspectFill;
-    
+    self.scene = [ATMyScene sceneWithSize:skView.bounds.size];
+    self.scene.scaleMode = SKSceneScaleModeAspectFill;
+
     // Present the scene.
-    [skView presentScene:scene];
+    [skView presentScene:self.scene];
 }
 
 - (BOOL)shouldAutorotate
@@ -35,17 +49,25 @@
 
 - (NSUInteger)supportedInterfaceOrientations
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return UIInterfaceOrientationMaskAllButUpsideDown;
-    } else {
-        return UIInterfaceOrientationMaskAll;
-    }
+    return UIInterfaceOrientationMaskAll;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
+}
+
+#pragma mark - Game logic
+
+- (void)startGame
+{
+
+}
+
+- (void)sendAnswer:(NSInteger)answer
+{
+
 }
 
 @end

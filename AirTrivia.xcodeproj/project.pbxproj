@@ -18,13 +18,17 @@
 		EC006625184AD42A0023B524 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC006623184AD42A0023B524 /* Main_iPad.storyboard */; };
 		EC006628184AD42A0023B524 /* ATViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC006627184AD42A0023B524 /* ATViewController.m */; };
 		EC00662B184AD42A0023B524 /* ATMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EC00662A184AD42A0023B524 /* ATMyScene.m */; };
-		EC00662D184AD42A0023B524 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = EC00662C184AD42A0023B524 /* Spaceship.png */; };
 		EC00662F184AD42A0023B524 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC00662E184AD42A0023B524 /* Images.xcassets */; };
 		EC006636184AD42A0023B524 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC006635184AD42A0023B524 /* XCTest.framework */; };
 		EC006637184AD42A0023B524 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC00660C184AD42A0023B524 /* Foundation.framework */; };
 		EC006638184AD42A0023B524 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC006610184AD42A0023B524 /* UIKit.framework */; };
 		EC006640184AD42A0023B524 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC00663E184AD42A0023B524 /* InfoPlist.strings */; };
 		EC006642184AD42A0023B524 /* AirTriviaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EC006641184AD42A0023B524 /* AirTriviaTests.m */; };
+		EC00664F184AD4830023B524 /* ATButtonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EC00664C184AD4830023B524 /* ATButtonNode.m */; };
+		EC006650184AD4830023B524 /* ATLineBreakLabelNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EC00664E184AD4830023B524 /* ATLineBreakLabelNode.m */; };
+		EC006653184AD4BD0023B524 /* ATAirPlayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EC006652184AD4BD0023B524 /* ATAirPlayScene.m */; };
+		EC006656184AF72D0023B524 /* emptyButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EC006654184AF72D0023B524 /* emptyButton.png */; };
+		EC006657184AF72D0023B524 /* emptyButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC006655184AF72D0023B524 /* emptyButton@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,13 +59,20 @@
 		EC006627184AD42A0023B524 /* ATViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATViewController.m; sourceTree = "<group>"; };
 		EC006629184AD42A0023B524 /* ATMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATMyScene.h; sourceTree = "<group>"; };
 		EC00662A184AD42A0023B524 /* ATMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATMyScene.m; sourceTree = "<group>"; };
-		EC00662C184AD42A0023B524 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		EC00662E184AD42A0023B524 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EC006634184AD42A0023B524 /* AirTriviaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirTriviaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC006635184AD42A0023B524 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		EC00663D184AD42A0023B524 /* AirTriviaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AirTriviaTests-Info.plist"; sourceTree = "<group>"; };
 		EC00663F184AD42A0023B524 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EC006641184AD42A0023B524 /* AirTriviaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AirTriviaTests.m; sourceTree = "<group>"; };
+		EC00664B184AD4830023B524 /* ATButtonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATButtonNode.h; sourceTree = "<group>"; };
+		EC00664C184AD4830023B524 /* ATButtonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATButtonNode.m; sourceTree = "<group>"; };
+		EC00664D184AD4830023B524 /* ATLineBreakLabelNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLineBreakLabelNode.h; sourceTree = "<group>"; };
+		EC00664E184AD4830023B524 /* ATLineBreakLabelNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLineBreakLabelNode.m; sourceTree = "<group>"; };
+		EC006651184AD4BD0023B524 /* ATAirPlayScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATAirPlayScene.h; sourceTree = "<group>"; };
+		EC006652184AD4BD0023B524 /* ATAirPlayScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATAirPlayScene.m; sourceTree = "<group>"; };
+		EC006654184AF72D0023B524 /* emptyButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emptyButton.png; sourceTree = "<group>"; };
+		EC006655184AF72D0023B524 /* emptyButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emptyButton@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +142,12 @@
 				EC006627184AD42A0023B524 /* ATViewController.m */,
 				EC006629184AD42A0023B524 /* ATMyScene.h */,
 				EC00662A184AD42A0023B524 /* ATMyScene.m */,
-				EC00662C184AD42A0023B524 /* Spaceship.png */,
+				EC006651184AD4BD0023B524 /* ATAirPlayScene.h */,
+				EC006652184AD4BD0023B524 /* ATAirPlayScene.m */,
+				EC00664B184AD4830023B524 /* ATButtonNode.h */,
+				EC00664C184AD4830023B524 /* ATButtonNode.m */,
+				EC00664D184AD4830023B524 /* ATLineBreakLabelNode.h */,
+				EC00664E184AD4830023B524 /* ATLineBreakLabelNode.m */,
 				EC00662E184AD42A0023B524 /* Images.xcassets */,
 				EC006615184AD42A0023B524 /* Supporting Files */,
 			);
@@ -145,6 +161,8 @@
 				EC006617184AD42A0023B524 /* InfoPlist.strings */,
 				EC00661A184AD42A0023B524 /* main.m */,
 				EC00661C184AD42A0023B524 /* AirTrivia-Prefix.pch */,
+				EC006654184AF72D0023B524 /* emptyButton.png */,
+				EC006655184AF72D0023B524 /* emptyButton@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -244,7 +262,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC00662D184AD42A0023B524 /* Spaceship.png in Resources */,
+				EC006657184AF72D0023B524 /* emptyButton@2x.png in Resources */,
+				EC006656184AF72D0023B524 /* emptyButton.png in Resources */,
 				EC00662F184AD42A0023B524 /* Images.xcassets in Resources */,
 				EC006625184AD42A0023B524 /* Main_iPad.storyboard in Resources */,
 				EC006622184AD42A0023B524 /* Main_iPhone.storyboard in Resources */,
@@ -269,6 +288,9 @@
 			files = (
 				EC00661B184AD42A0023B524 /* main.m in Sources */,
 				EC006628184AD42A0023B524 /* ATViewController.m in Sources */,
+				EC00664F184AD4830023B524 /* ATButtonNode.m in Sources */,
+				EC006653184AD4BD0023B524 /* ATAirPlayScene.m in Sources */,
+				EC006650184AD4830023B524 /* ATLineBreakLabelNode.m in Sources */,
 				EC00661F184AD42A0023B524 /* ATAppDelegate.m in Sources */,
 				EC00662B184AD42A0023B524 /* ATMyScene.m in Sources */,
 			);
@@ -356,6 +378,7 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -390,6 +413,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -491,6 +515,7 @@
 				EC006647184AD42A0023B524 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EC006648184AD42A0023B524 /* Build configuration list for PBXNativeTarget "AirTriviaTests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +524,7 @@
 				EC00664A184AD42A0023B524 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

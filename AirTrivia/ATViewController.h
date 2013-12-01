@@ -11,4 +11,7 @@
 
 @interface ATViewController : UIViewController
 
+- (void)startGame;
+- (void)sendAnswer:(NSInteger)answer;
+
 @end
