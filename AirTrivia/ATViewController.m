@@ -75,7 +75,7 @@
 
 - (void)startGame
 {
-
+    [self sendToAllPeers:@"TEST COMMAND"];
 }
 
 - (void)sendAnswer:(NSInteger)answer
@@ -258,6 +258,8 @@
 
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context
 {
+    NSString *commandReceived = [NSString stringWithUTF8String:data.bytes];
+    NSLog(@"Command %@ received from %@ (%@)", commandReceived, peer, self.peersToNames[peer]);
 }
 
 - (void)startGKSession
@@ -278,6 +280,22 @@
     if (self.isServer)
     {
         self.peersToNames[self.gkSession.peerID] = self.gkSession.displayName;
+    }
+}
+
+#pragma mark - Peer communication
+
+- (void)sendToAllPeers:(NSString *)command
+{
+    NSError *error = nil;
+    [self.gkSession sendData:[NSData dataWithBytes:command.UTF8String
+                                            length:1 + [command lengthOfBytesUsingEncoding:NSUTF8StringEncoding]]
+                     toPeers:self.peersToNames.allKeys
+                withDataMode:GKSendDataReliable
+                       error:&error];
+    if (error)
+    {
+        NSLog(@"Error sending command %@ to peers: %@", command, error);
     }
 }
 
