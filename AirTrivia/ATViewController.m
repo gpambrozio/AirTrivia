@@ -10,6 +10,10 @@
 #import "ATMyScene.h"
 #import "ATAirPlayScene.h"
 
+#define kCommandQuestion    @"question:"
+#define kCommandEndQuestion @"endquestion"
+#define kCommandAnswer      @"answer:"
+
 @interface ATViewController ()
 
 @property (nonatomic, strong) ATMyScene *scene;
@@ -22,6 +26,12 @@
 @property (nonatomic, strong) GKSession *gkSession;
 @property (nonatomic, strong) NSMutableDictionary *peersToNames;
 @property (nonatomic, assign) BOOL gameStarted;
+
+@property (nonatomic, strong) NSMutableArray *questions;
+@property (nonatomic, strong) NSMutableDictionary *peersToPoints;
+@property (nonatomic, assign) NSInteger currentQuestionAnswer;
+@property (nonatomic, assign) NSInteger currentQuestionAnswersReceived;
+@property (nonatomic, assign) NSInteger maxPoints;
 
 @end
 
@@ -75,12 +85,74 @@
 
 - (void)startGame
 {
-    [self sendToAllPeers:@"TEST COMMAND"];
+    if (!self.gameStarted)
+    {
+        self.gameStarted = YES;
+        self.maxPoints = 0;
+
+        self.questions = [[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"questions" ofType:@"plist"]] mutableCopy];
+        self.peersToPoints = [[NSMutableDictionary alloc]initWithCapacity:self.peersToNames.count];
+        for (NSString *peedID in self.peersToNames)
+        {
+            self.peersToPoints[peedID] = @0;
+        }
+        [self startQuestion];
+    }
+}
+
+- (void)startQuestion
+{
+    if (self.questions.count == 0)
+    {
+        NSMutableString *winner = [[NSMutableString alloc] init];
+        for (NSString *peerID in self.peersToPoints)
+        {
+            NSInteger points = [self.peersToPoints[peerID] integerValue];
+            if (points == self.maxPoints)
+            {
+                if (winner.length)
+                {
+                    [winner appendFormat:@", %@", self.peersToNames[peerID]];
+                }
+                else
+                {
+                    [winner appendString:self.peersToNames[peerID]];
+                }
+            }
+        }
+        [self.mirroredScene setGameOver:winner];
+        return;
+    }
+
+    u_int32_t questionIndex = arc4random_uniform((u_int32_t)self.questions.count);
+    NSMutableArray *questionArray = [self.questions[questionIndex] mutableCopy];
+    [self.questions removeObjectAtIndex:questionIndex];
+
+    NSString *question = questionArray[0];
+    [questionArray removeObjectAtIndex:0];
+
+    NSMutableArray *answers = [[NSMutableArray alloc] initWithCapacity:questionArray.count];
+    self.currentQuestionAnswer = -1;
+    self.currentQuestionAnswersReceived = 0;
+    while (questionArray.count)
+    {
+        u_int32_t answerIndex = arc4random_uniform((u_int32_t)questionArray.count);
+        if (answerIndex == 0 && self.currentQuestionAnswer == -1)
+        {
+            self.currentQuestionAnswer = answers.count;
+        }
+        [answers addObject:questionArray[answerIndex]];
+        [questionArray removeObjectAtIndex:answerIndex];
+    }
+
+    [self sendToAllPeers:[kCommandQuestion stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)answers.count]]];
+    [self.scene startQuestionWithAnswerCount:answers.count];
+    [self.mirroredScene startQuestion:question withAnswers:answers];
 }
 
 - (void)sendAnswer:(NSInteger)answer
 {
-
+    [self sendToAllPeers:[kCommandAnswer stringByAppendingString:[NSString stringWithFormat:@"%d", answer]]];
 }
 
 #pragma mark - AirPlay and extended display
@@ -260,6 +332,57 @@
 {
     NSString *commandReceived = [NSString stringWithUTF8String:data.bytes];
     NSLog(@"Command %@ received from %@ (%@)", commandReceived, peer, self.peersToNames[peer]);
+    if ([commandReceived hasPrefix:kCommandQuestion] && !self.isServer)
+    {
+        NSString *answersString = [commandReceived substringFromIndex:kCommandQuestion.length];
+        [self.scene startQuestionWithAnswerCount:[answersString integerValue]];
+    }
+
+    if ([commandReceived hasPrefix:kCommandAnswer] && self.isServer)
+    {
+        NSString *answerString = [commandReceived substringFromIndex:kCommandAnswer.length];
+        NSInteger answer = [answerString integerValue];
+        if (answer == self.currentQuestionAnswer && self.currentQuestionAnswer >= 0)
+        {
+            self.currentQuestionAnswer = -1;
+            NSInteger points = 1 + [self.peersToPoints[peer] integerValue];
+            if (points > self.maxPoints)
+            {
+                self.maxPoints = points;
+            }
+            self.peersToPoints[peer] = @(points);
+            [self endQuestion:peer];
+        }
+        else if (++self.currentQuestionAnswersReceived == self.peersToNames.count)
+        {
+            [self endQuestion:nil];
+        }
+    }
+
+    if ([commandReceived isEqualToString:kCommandEndQuestion] && !self.isServer)
+    {
+        [self.scene endQuestion];
+    }
+}
+
+- (void)endQuestion:(NSString *)winnerPeerID
+{
+    [self sendToAllPeers:kCommandEndQuestion];
+
+    NSMutableDictionary *namesToPoints = [[NSMutableDictionary alloc] initWithCapacity:self.peersToNames.count];
+    for (NSString *peerID in self.peersToNames)
+    {
+        namesToPoints[self.peersToNames[peerID]] = self.peersToPoints[peerID];
+    }
+    [self.mirroredScene endQuestionWithPoints:namesToPoints
+                                       winner:winnerPeerID ? self.peersToNames[winnerPeerID] : nil];
+    [self.scene endQuestion];
+
+    double delayInSeconds = 4.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self startQuestion];
+    });
 }
 
 - (void)startGKSession

@@ -29,6 +29,7 @@
 		EC006653184AD4BD0023B524 /* ATAirPlayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EC006652184AD4BD0023B524 /* ATAirPlayScene.m */; };
 		EC006656184AF72D0023B524 /* emptyButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EC006654184AF72D0023B524 /* emptyButton.png */; };
 		EC006657184AF72D0023B524 /* emptyButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC006655184AF72D0023B524 /* emptyButton@2x.png */; };
+		ECD26F30184C26220072B1D7 /* questions.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECD26F2F184C26220072B1D7 /* questions.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		EC006652184AD4BD0023B524 /* ATAirPlayScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATAirPlayScene.m; sourceTree = "<group>"; };
 		EC006654184AF72D0023B524 /* emptyButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emptyButton.png; sourceTree = "<group>"; };
 		EC006655184AF72D0023B524 /* emptyButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emptyButton@2x.png"; sourceTree = "<group>"; };
+		ECD26F2F184C26220072B1D7 /* questions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = questions.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 				EC00661C184AD42A0023B524 /* AirTrivia-Prefix.pch */,
 				EC006654184AF72D0023B524 /* emptyButton.png */,
 				EC006655184AF72D0023B524 /* emptyButton@2x.png */,
+				ECD26F2F184C26220072B1D7 /* questions.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				EC006656184AF72D0023B524 /* emptyButton.png in Resources */,
 				EC00662F184AD42A0023B524 /* Images.xcassets in Resources */,
 				EC006625184AD42A0023B524 /* Main_iPad.storyboard in Resources */,
+				ECD26F30184C26220072B1D7 /* questions.plist in Resources */,
 				EC006622184AD42A0023B524 /* Main_iPhone.storyboard in Resources */,
 				EC006619184AD42A0023B524 /* InfoPlist.strings in Resources */,
 			);
